@@ -20,11 +20,6 @@
     background-color: lightgray;
 }
 
-.parent {
-    position: relative;
-    min-height: 100%;
-}
-
 .word-input {
     position: absolute;
     bottom: 2vh;

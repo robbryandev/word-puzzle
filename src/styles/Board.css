@@ -10,3 +10,8 @@
     height: fit-content;
     display: relative;
 }
+
+.parent {
+    position: relative;
+    min-height: 100%;
+}

@@ -4,15 +4,49 @@ import wordJson from "../assets/new_words.json";
 const WordSlice = createSlice({
     name: "word",
     initialState: {
-        currentWord: "test",
-        words: [...wordJson.words]
+        currentWord: [],
+        words: [...wordJson.words],
+        guess: 0,
+        guessList: [],
+        won: false
     },
     reducers: {
         newWord(state, action) {
-            state.currentWord = action.payload
+            state.currentWord = action.payload.toLowerCase().split("")
+        },
+        addGuess(state) {
+            state.guess++
+        },
+        newGuess(state, action) {
+            const actionGuess = action.payload.toLowerCase().split("")
+            let thisGuess = []
+            for (let i = 0; i < actionGuess.length; i++) {
+                if (actionGuess[i] === state.currentWord[i]) {
+                    thisGuess.push({
+                        letter: actionGuess[i],
+                        status: "match"
+                    })
+                } else if (state.currentWord.includes(actionGuess[i])) {
+                    thisGuess.push({
+                        letter: actionGuess[i],
+                        status: "exist"
+                    })
+                } else {
+                    thisGuess.push({
+                        letter: actionGuess[i],
+                        status: "none"
+                    })
+                }
+            }
+            console.log(thisGuess)
+            state.guessList.push(thisGuess)
+        },
+        checkWin(state) {
+            const lastGuess = state.guessList[state.guessList.length - 1]
+            state.won = lastGuess.filter(ch => ch.status !== "match").length === 0
         }
     }
 })
 
-export const {newWord} = WordSlice.actions
+export const {newWord, addGuess, newGuess, checkWin} = WordSlice.actions
 export default WordSlice

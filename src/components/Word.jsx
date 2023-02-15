@@ -9,10 +9,13 @@ export class Word extends Component {
             const randWord = this.props.word.words[Math.floor(Math.random() * this.props.word.words.length - 1)]
             dispatch(newWord(randWord))
         }
+        if (this.props.word.currentWord.length === 0) {
+            NEW_WORD()
+        }
         return (
             <>
-                <p>{this.props.word.currentWord}</p>
-                <button onClick={ev => NEW_WORD()}>New Word</button>
+                <p>{this.props.word.currentWord.toString()}</p>
+                <p>Won: {this.props.word.won.toString()}</p>
             </>
         )
     }
