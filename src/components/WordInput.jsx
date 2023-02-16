@@ -34,7 +34,7 @@ class WordInput extends Component {
                                 spellCheck="false" disabled={false} value={this.props.word.wordInput}
                                 onChange={ev => handleChange(ev)} required/>
                                 <button type="submit" className="submit">Guess</button>
-                                <span className="tries-left">{6 - this.props.word.guess} Tries left</span>
+                                <pre className="tries-left">{6 - this.props.word.guess} Tries left</pre>
                             </>
                         ) : (
                             <>
