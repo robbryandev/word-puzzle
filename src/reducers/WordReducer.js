@@ -5,17 +5,27 @@ const WordSlice = createSlice({
     name: "word",
     initialState: {
         currentWord: [],
+        wordInput: "",
         words: [...wordJson.words],
         guess: 0,
         guessList: [],
         won: false
     },
     reducers: {
+        setInput(state, action) {
+            state.wordInput = action.payload
+        },
         newWord(state, action) {
             state.currentWord = action.payload.toLowerCase().split("")
         },
         addGuess(state) {
             state.guess++
+        },
+        resetGuess(state) {
+            state.guess = 0
+            state.won = false
+            state.guessList = []
+            state.currentWord = []
         },
         newGuess(state, action) {
             const actionGuess = action.payload.toLowerCase().split("")
@@ -48,5 +58,5 @@ const WordSlice = createSlice({
     }
 })
 
-export const {newWord, addGuess, newGuess, checkWin} = WordSlice.actions
+export const { setInput, newWord, addGuess, resetGuess, newGuess, checkWin } = WordSlice.actions
 export default WordSlice

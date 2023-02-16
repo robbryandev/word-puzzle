@@ -26,3 +26,7 @@
     left: 50%;
     transform: translate(-50%);
 }
+
+.tries-left {
+    margin-left: 2rem;
+}

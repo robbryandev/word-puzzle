@@ -9,7 +9,6 @@ export class GuessList extends Component {
             <div className="guess-list">
                 {
                     this.props.word.guessList.map((gs) => {
-                        console.log(gs)
                         return (
                             <pre className="guess" key={v4()}>
                                 {
